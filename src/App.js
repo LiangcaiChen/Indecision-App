@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
 import Options from './components/Options';
-import Action from "./components/Action";
+import Choice from "./components/Choice";
 import AddOption from "./components/AddOption"
 
 class App extends Component {
@@ -12,6 +12,11 @@ class App extends Component {
             options: ['book1','book2','book3']
         }
     }
+
+    handlePickOption = () => {
+      let picked = this.state.options[Math.floor(Math.random()*this.state.options.length)];
+      alert(picked);
+    };
 
     handleRemoveSingleOption= (option) => {
         this.setState((prevState)=>({
@@ -31,6 +36,7 @@ class App extends Component {
         return (
             <div>
                 <Header title="Indecision App"/>
+                <Choice pickOption={this.handlePickOption}/>
                 <Options
                     options={this.state.options}
                     removeSingleOption={this.handleRemoveSingleOption}

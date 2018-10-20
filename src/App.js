@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
 import Options from './components/Options';
+import Action from "./components/Action";
+import AddOption from "./components/AddOption"
 
 class App extends Component {
     constructor(props) {
@@ -19,13 +21,21 @@ class App extends Component {
         console.log('Remove',option);
     };
 
+    handleAddOption = (option) => {
+        this.setState((prevState)=>({
+            options: prevState.options.concat(option)
+        }))
+    };
+
     render() {
         return (
             <div>
                 <Header title="Indecision App"/>
                 <Options
                     options={this.state.options}
-                    removeSingleOption={this.handleRemoveSingleOption}/>
+                    removeSingleOption={this.handleRemoveSingleOption}
+                />
+                <AddOption addOption = {this.handleAddOption}/>
             </div>
         );
     }

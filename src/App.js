@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Header from './components/Header';
 import Options from './components/Options';
 import Choice from "./components/Choice";
-import AddOption from "./components/AddOption"
+import AddOption from "./components/AddOption";
+import Action from './components/Action';
 
 class App extends Component {
     constructor(props) {
@@ -32,11 +33,16 @@ class App extends Component {
         }))
     };
 
+    handleRemoveOptions = () => {
+        this.setState({options: []});
+    };
+
     render() {
         return (
             <div>
                 <Header title="Indecision App"/>
                 <Choice pickOption={this.handlePickOption}/>
+                <Action removeAll={this.handleRemoveOptions}/>
                 <Options
                     options={this.state.options}
                     removeSingleOption={this.handleRemoveSingleOption}

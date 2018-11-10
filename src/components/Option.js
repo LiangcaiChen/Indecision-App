@@ -6,6 +6,7 @@ class Option extends Component {
             <li>
                 {this.props.opText}
                 <button
+                    className="button button--link"
                     onClick={(e)=>this.props.handleRemoveSingleOption(this.props.opText)}
                 >Remove</button>
             </li>

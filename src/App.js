@@ -14,6 +14,25 @@ class App extends Component {
         }
     }
 
+    componentDidMount() {
+        try{
+            const json = localStorage.getItem('options');
+            const options = JSON.parse(json);
+            if(options) {
+                this.setState(() => ({options}));
+            }
+        } catch (e) {
+
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(prevState.options.length !== this.state.options.length) {
+            const json = JSON.stringify(this.state.options);
+            localStorage.setItem('options', json);
+        }
+    }
+
     handlePickOption = () => {
       let picked = this.state.options[Math.floor(Math.random()*this.state.options.length)];
       alert(picked);
@@ -41,13 +60,16 @@ class App extends Component {
         return (
             <div>
                 <Header title="Indecision App"/>
-                <Choice pickOption={this.handlePickOption}/>
-                <Action removeAll={this.handleRemoveOptions}/>
-                <Options
-                    options={this.state.options}
-                    removeSingleOption={this.handleRemoveSingleOption}
-                />
-                <AddOption addOption = {this.handleAddOption}/>
+
+                <div className="container">
+                    <Choice pickOption={this.handlePickOption}/>
+                    <Action removeAll={this.handleRemoveOptions}/>
+                    <Options
+                        options={this.state.options}
+                        removeSingleOption={this.handleRemoveSingleOption}
+                    />
+                    <AddOption addOption = {this.handleAddOption}/>
+                </div>
             </div>
         );
     }

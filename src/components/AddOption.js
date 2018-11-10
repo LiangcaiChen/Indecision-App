@@ -7,13 +7,15 @@ class AddOption extends Component {
         console.log(e.target.option.value);
         let optionText = e.target.option.value;
         this.props.addOption(optionText);
+
+        e.target.option.value = '';
     };
 
     render() {
         return (
             <form onSubmit={this.addOption}>
                 <input type="text" name="option"/>
-                <button>Add Option</button>
+                <button className="button">Add Option</button>
             </form>
         )
     }

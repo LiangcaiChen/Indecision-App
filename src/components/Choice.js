@@ -4,7 +4,9 @@ class Choice extends Component {
     render() {
         return (
             <div>
-                <button onClick={this.props.pickOption}>What should I pick?</button>
+                <button
+                    className="big-button"
+                    onClick={this.props.pickOption}>What should I pick?</button>
             </div>
         )
     }

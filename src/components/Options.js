@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Option from './Option';
 
+let uuid4 = require('uuid4');
+
 class Options extends Component {
     addOption = (e) => {
         e.preventDefault();
@@ -12,10 +14,11 @@ class Options extends Component {
     render() {
         return (
             <div>
+                {this.props.options.length===0 && <p>Please add an option to get started!</p>}
                 <ol>
                     {this.props.options.map((op)=>(
                         <Option
-                            key={op}
+                            key={uuid4()}
                             opText={op}
                             handleRemoveSingleOption={this.props.removeSingleOption}/>
                     ))}

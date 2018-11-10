@@ -4,7 +4,9 @@ class Action extends Component {
     render() {
         return (
             <div>
-                <button onClick={this.props.removeAll}>Remove all</button>
+                <button
+                    className="button button--link"
+                    onClick={this.props.removeAll}>Remove all</button>
             </div>
         )
     }
